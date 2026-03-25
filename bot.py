@@ -1,12 +1,13 @@
 import random
+import os
 from telegram import Update, ReplyKeyboardMarkup
 from telegram.ext import ApplicationBuilder, MessageHandler, CommandHandler, ContextTypes, filters
-
 
 TOKEN = "8715676944:AAFpyge3V_1sR46D5HNMG_rsZTPM5uGg56k"
 
 загаданное_число = {}
 язык_пользователя = {}
+игра_кнп = {}
 
 тексты = {
     "ru": {
@@ -22,6 +23,7 @@ TOKEN = "8715676944:AAFpyge3V_1sR46D5HNMG_rsZTPM5uGg56k"
         "else": "Ха-ха! Ты написал: {} 😂",
         "язык": "Выбери язык / Choose language / Оберіть мову:",
         "язык_выбран": "Язык изменён на Русский! 🇷🇺",
+        "ссылка": "🎤 Голосовой режим: https://veselukha-app.onrender.com/Index.html",
         "кнопки": [
             ["Анекдот", "Привет"],
             ["Как дела", "Угадай число"],
@@ -53,9 +55,9 @@ TOKEN = "8715676944:AAFpyge3V_1sR46D5HNMG_rsZTPM5uGg56k"
             "камень": "🪨 Камень",
             "ножницы": "✂️ Ножницы",
             "бумага": "📄 Бумага",
-            "выиграл": "Ты выиграл! 🎉а я проиграл эххххх....",
-            "проиграл": "Я выиграл! 😈 ураааааааааа!!!!!!!!!!",
-            "ничья": "Ничья! 🤝жаль жаль жаль ну это лучше чем порожения поздравляем друг друга урааааааа!!!",
+            "выиграл": "Ты выиграл! 🎉",
+            "проиграл": "Я выиграл! 😈",
+            "ничья": "Ничья! 🤝",
             "выбор": "Выбери:",
             "я_выбрал": "Я выбрал"
         }
@@ -73,6 +75,7 @@ TOKEN = "8715676944:AAFpyge3V_1sR46D5HNMG_rsZTPM5uGg56k"
         "else": "Ха-ха! Ти написав: {} 😂",
         "язык": "Виберіть мову / Choose language / Выберите язык:",
         "язык_выбран": "Мову змінено на Українську! 🇺🇦",
+        "ссылка": "🎤 Голосовий режим: https://veselukha-app.onrender.com/Index.html",
         "кнопки": [
             ["Анекдот", "Привіт"],
             ["Як справи", "Вгадай число"],
@@ -83,7 +86,7 @@ TOKEN = "8715676944:AAFpyge3V_1sR46D5HNMG_rsZTPM5uGg56k"
         "анекдоты": [
             "Чому програмісти носять окуляри? Бо не С# 😂",
             "Чебурашка каже: Гено, давай викличемо сантехніка!\nГена: Навіщо? У нас все добре!\nЧебурашка: Та от кран високо, і у туалеті вода швидко тече — вмитися не встигаю! 😂",
-            "Вчителька запитує на уроці Навколишній світ:\n— Чого найбільше бояться звірі у лісі?\nДіти майже хором:\n— МАШУ!!! 😂",
+            "Вчителька запитує на уроці Навколишній світ:\n— Чого найбільше бояться звірі у лісі?\nДіти майже хором:\n— МАШУ!!! 😄",
             "— Чи не підкажете, яким заспокійливим користується ведмідь після спілкування з Машею з мультика? 😂"
         ],
         "предсказания": [
@@ -124,6 +127,7 @@ TOKEN = "8715676944:AAFpyge3V_1sR46D5HNMG_rsZTPM5uGg56k"
         "else": "Ha-ha! You wrote: {} 😂",
         "язык": "Choose language / Выберите язык / Оберіть мову:",
         "язык_выбран": "Language changed to English! 🇬🇧",
+        "ссылка": "🎤 Voice mode: https://veselukha-app.onrender.com/Index.html",
         "кнопки": [
             ["Joke", "Hello"],
             ["How are you", "Guess number"],
@@ -178,8 +182,6 @@ def кнп_клавиатура(user_id):
         [к["камень"], к["ножницы"], к["бумага"]]
     ], resize_keyboard=True)
 
-игра_кнп = {}
-
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
     user_id = update.message.from_user.id
     lang = get_lang(user_id)
@@ -192,6 +194,11 @@ async def language(update: Update, context: ContextTypes.DEFAULT_TYPE):
         ["🇷🇺 Русский", "🇺🇦 Українська", "🇬🇧 English"]
     ], resize_keyboard=True)
     await update.message.reply_text(тексты[lang]["язык"], reply_markup=клавиатура)
+
+async def link(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    user_id = update.message.from_user.id
+    lang = get_lang(user_id)
+    await update.message.reply_text(тексты[lang]["ссылка"])
 
 async def ответ(update: Update, context: ContextTypes.DEFAULT_TYPE):
     текст = update.message.text.lower()
@@ -284,5 +291,6 @@ async def ответ(update: Update, context: ContextTypes.DEFAULT_TYPE):
 app = ApplicationBuilder().token(TOKEN).build()
 app.add_handler(CommandHandler("start", start))
 app.add_handler(CommandHandler("language", language))
+app.add_handler(CommandHandler("link", link))
 app.add_handler(MessageHandler(filters.TEXT, ответ))
 app.run_polling()
