@@ -2,8 +2,8 @@ import random
 from telegram import Update, ReplyKeyboardMarkup
 from telegram.ext import ApplicationBuilder, MessageHandler, CommandHandler, ContextTypes, filters
 
-import os
-TOKEN = os.getenv("TOKEN", "8715676944:AAFpyge3V_1sR46D5HNMG_rsZTPM5uGg56k")
+
+TOKEN = "8715676944:AAFpyge3V_1sR46D5HNMG_rsZTPM5uGg56k"
 
 загаданное_число = {}
 язык_пользователя = {}
