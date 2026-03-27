@@ -1,3 +1,4 @@
+
 import random
 import os
 from telegram import Update, ReplyKeyboardMarkup
@@ -23,7 +24,7 @@ TOKEN = "8715676944:AAFpyge3V_1sR46D5HNMG_rsZTPM5uGg56k"
         "else": "Ха-ха! Ты написал: {} 😂",
         "язык": "Выбери язык / Choose language / Оберіть мову:",
         "язык_выбран": "Язык изменён на Русский! 🇷🇺",
-        "ссылка": "🎤 Голосовой режим: https://veselukha-app.onrender.com/Index.html",
+        "ссылка": "🎤 Голосовой режим: https://veselukha-app.onrender.com/Index.html\n\nЕсли микрофон не работает — нажми три точки ⋮ и открой в Chrome!",
         "кнопки": [
             ["Анекдот", "Привет"],
             ["Как дела", "Угадай число"],
@@ -75,7 +76,7 @@ TOKEN = "8715676944:AAFpyge3V_1sR46D5HNMG_rsZTPM5uGg56k"
         "else": "Ха-ха! Ти написав: {} 😂",
         "язык": "Виберіть мову / Choose language / Выберите язык:",
         "язык_выбран": "Мову змінено на Українську! 🇺🇦",
-        "ссылка": "🎤 Голосовий режим: https://veselukha-app.onrender.com/Index.html",
+        "ссылка": "🎤 Голосовий режим: https://veselukha-app.onrender.com/Index.html\n\nЯкщо мікрофон не працює — натисни три крапки ⋮ і відкрий у Chrome!",
         "кнопки": [
             ["Анекдот", "Привіт"],
             ["Як справи", "Вгадай число"],
@@ -86,7 +87,7 @@ TOKEN = "8715676944:AAFpyge3V_1sR46D5HNMG_rsZTPM5uGg56k"
         "анекдоты": [
             "Чому програмісти носять окуляри? Бо не С# 😂",
             "Чебурашка каже: Гено, давай викличемо сантехніка!\nГена: Навіщо? У нас все добре!\nЧебурашка: Та от кран високо, і у туалеті вода швидко тече — вмитися не встигаю! 😂",
-            "Вчителька запитує на уроці Навколишній світ:\n— Чого найбільше бояться звірі у лісі?\nДіти майже хором:\n— МАШУ!!! 😄",
+            "Вчителька запитує на уроці Навколишній світ:\n— Чого найбільше бояться звірі у лісі?\nДіти майже хором:\n— МАШУ!!! 😂",
             "— Чи не підкажете, яким заспокійливим користується ведмідь після спілкування з Машею з мультика? 😂"
         ],
         "предсказания": [
@@ -127,7 +128,7 @@ TOKEN = "8715676944:AAFpyge3V_1sR46D5HNMG_rsZTPM5uGg56k"
         "else": "Ha-ha! You wrote: {} 😂",
         "язык": "Choose language / Выберите язык / Оберіть мову:",
         "язык_выбран": "Language changed to English! 🇬🇧",
-        "ссылка": "🎤 Voice mode: https://veselukha-app.onrender.com/Index.html",
+        "ссылка": "🎤 Voice mode: https://veselukha-app.onrender.com/Index.html\n\nIf microphone doesn't work — tap three dots ⋮ and open in Chrome!",
         "кнопки": [
             ["Joke", "Hello"],
             ["How are you", "Guess number"],
